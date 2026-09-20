@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block titulo %}Procesar nueva imagen{% endblock %}
+
+{% block contenido %}
+  <div class="formulario-contenedor">
+    <p class="texto-pequeno">Nueva carga</p>
+    <h2>Procesar nueva imagen</h2>
+    <p class="descripcion">Completa los datos y selecciona una imagen de hasta 5 MB.</p>
+
+    <form id="formulario" action="{{ url_for('imagenes.procesar') }}" method="POST"
+          enctype="multipart/form-data" novalidate>
+
+      <div class="campo">
+        <label for="nombre">Nombre completo *</label>
+        <input type="text" id="nombre" name="nombre"
+               placeholder="Ej. Juan Perez">
+        <span class="error" id="error-nombre"></span>
+      </div>
+
+      <div class="campo">
+        <label for="email">Correo electronico *</label>
+        <input type="email" id="email" name="email"
+               placeholder="ejemplo@correo.com">
+        <span class="error" id="error-email"></span>
+      </div>
+
+      <div class="campo">
+        <label for="comentario">Comentario (opcional)</label>
+        <textarea id="comentario" name="comentario" rows="3"
+                  placeholder="Escribe un comentario breve"></textarea>
+      </div>
+
+      <div class="campo">
+        <label for="imagen">Imagen a procesar *</label>
+        <input type="file" id="imagen" name="imagen" accept=".png,.jpg,.jpeg,.gif,.webp"
+               class="archivo">
+        <span class="ayuda">Formatos: PNG, JPG, JPEG, GIF y WEBP.</span>
+        <span class="error" id="error-imagen"></span>
+      </div>
+
+      <div id="vista-previa-contenedor" class="vista-previa-contenedor">
+        <label for="vista-previa">Vista previa</label>
+        <img id="vista-previa" alt="Vista previa de la imagen seleccionada">
+      </div>
+
+      <button type="submit" class="boton boton-principal">
+        Procesar imagen
+      </button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}

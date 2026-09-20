@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}Imágenes procesadas{% endblock %}
+
+{% block contenido %}
+  <div class="titulo-pagina">
+    <div>
+      <p class="texto-pequeno">Galeria</p>
+      <h2>Imagenes procesadas</h2>
+    </div>
+    <a href="{{ url_for('imagenes.nueva') }}" class="boton boton-principal">
+      + Nueva imagen
+    </a>
+  </div>
+
+  {% if imagenes %}
+    <div class="galeria">
+      {% for img in imagenes %}
+        <article class="tarjeta">
+          <img src="{{ url_for('static', filename='img/processed/' ~ img.archivo_procesado) }}"
+               alt="Imagen procesada por {{ img.nombre }}">
+          <div class="tarjeta-contenido">
+            <p class="nombre-imagen">{{ img.nombre }}</p>
+            <p class="dato">{{ img.email }}</p>
+            <p class="dato">
+            {{ (img.peso_original / 1024) | round(1) }} KB → {{ (img.peso_procesado / 1024) | round(1) }} KB
+            </p>
+            {% if img.comentario %}
+              <p class="comentario">{{ img.comentario }}</p>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="vacio">
+      <h3>Aun no hay imagenes</h3>
+      <p>Cuando proceses una imagen, aparecera aqui.</p>
+    </div>
+  {% endif %}
+{% endblock %}

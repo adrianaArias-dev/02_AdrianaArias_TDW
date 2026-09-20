@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+.env
+instance/
+imagenes.db
+
+# Archivos subidos/generados por el usuario (se conservan las carpetas)
+imagenes/static/img/uploads/*
+imagenes/static/img/processed/*
+!imagenes/static/img/uploads/.gitkeep
+!imagenes/static/img/processed/.gitkeep
